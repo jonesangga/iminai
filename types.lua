@@ -1,6 +1,6 @@
 local Enum = require("util").Enum
 
-local pos_types = Enum{
+local pos = Enum{
     "INTJ", "UNKNOWN",
     "COMMA",
 }
@@ -10,11 +10,11 @@ local sentence_types = Enum{
 }
 
 local punct = {
-    [","] = pos_types.COMMA,
+    [","] = pos.COMMA,
 }
 
 return {
     punct = punct,
-    pos_types = pos_types,
+    pos = pos,
     sentence_types = sentence_types,
 }

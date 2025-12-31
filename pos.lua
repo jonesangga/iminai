@@ -2,7 +2,7 @@ local inspect = require("libraries/inspect")
 
 local vocab = require("vocab")
 local punct = require("types").punct
-local PT = require("types").pos_types
+local pos = require("types").pos
 
 local Pos = {}
 Pos.__index = Pos
@@ -16,7 +16,7 @@ function Pos:print()
     print(sep)
 end
 
-local function pos(tokens)
+local function get_pos(tokens)
     local t = {}
     for _, token in ipairs(tokens) do
         if vocab[token] then
@@ -24,10 +24,10 @@ local function pos(tokens)
         elseif punct[token] then
             table.insert(t, { val = token, type = punct[token] })
         else
-            table.insert(t, { val = token, type = PT.UNKNOWN })
+            table.insert(t, { val = token, type = pos.UNKNOWN })
         end
     end
     return setmetatable(t, Pos)
 end
 
-return pos
+return get_pos

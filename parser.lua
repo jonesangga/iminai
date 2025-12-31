@@ -1,5 +1,5 @@
 local inspect = require("libraries/inspect")
-local PT = require("types").pos_types
+local pos = require("types").pos
 local ST = require("types").sentence_types
 
 local function make(tag, props)
@@ -62,10 +62,10 @@ function Parser:parse()
 end
 
 function Parser:sentence()
-    if self:match(PT.INTJ) then
+    if self:match(pos.INTJ) then
         local recipient
 
-        if self:match(PT.COMMA) then
+        if self:match(pos.COMMA) then
             recipient = self:peek()
             self:advance()
         end
