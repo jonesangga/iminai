@@ -44,9 +44,10 @@ function M.run_string(line)
     end
 end
 
-function M.setup(writefn)
-    eval.print = writefn
-    M.print = writefn
+function M.setup(printfn, writefn)
+    eval.print = printfn
+    eval.write = writefn
+    M.print = printfn
 end
 
 -- Run as script.

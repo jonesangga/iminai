@@ -4,5 +4,11 @@ repl:
 doc:
 	cmark-gfm -e table docs/imola.md > docs/imola.html
 
-test:
+test: unit integration
+
+unit:
+	lua tests/unit/lexer_test.lua
+
+integration:
 	lua tests/integration/1.lua
+	lua tests/integration/translate.lua

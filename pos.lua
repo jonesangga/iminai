@@ -2,6 +2,7 @@ local inspect = require("libraries/inspect")
 
 local vocab = require("vocab")
 local punct = require("types").punct
+local cmd = require("types").cmd
 local pos = require("types").pos
 
 local Pos = {}
@@ -23,6 +24,8 @@ local function get_pos(tokens)
             table.insert(t, { val = token, type = vocab[token] })
         elseif punct[token] then
             table.insert(t, { val = token, type = punct[token] })
+        elseif cmd[token] then
+            table.insert(t, { val = token, type = cmd[token] })
         else
             table.insert(t, { val = token, type = pos.UNKNOWN })
         end
