@@ -20,13 +20,13 @@ end
 local tests = {
     {
         name = "greet",
-        src = "helou",
-        out = "helou",
+        src = "helo",
+        out = "helo",
     },
     {
         name = "greet Imi",
-        src = "helou, Imi",
-        out = "helou",
+        src = "helo, Imi",
+        out = "helo",
     },
 }
 

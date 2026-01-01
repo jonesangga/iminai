@@ -20,13 +20,13 @@ function M.repl()
 
         if #line ~= 0 then
             tokens = lexer(line)
-            tokens:print()
+            -- tokens:print()
 
             poss = pos(tokens)
-            poss:print()
+            -- poss:print()
 
             ast = parser(poss)
-            ast:print()
+            -- ast:print()
 
             eval.eval(ast)
         end

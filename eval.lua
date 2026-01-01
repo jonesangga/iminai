@@ -7,7 +7,7 @@ function eval_sentence(node, env)
     local tag = node.tag
 
     if tag == ST.GREETING then
-        eval.print("helou")
+        eval.print("helo")
 
     else
         error("unhandled sentence type " .. ST[tag])

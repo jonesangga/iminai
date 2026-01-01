@@ -1,7 +1,7 @@
 local pos = require("types").pos
 
 local vocab = {
-    ["helou"] = pos.INTJ,
+    ["helo"] = pos.INTJ,
 }
 
 return vocab
