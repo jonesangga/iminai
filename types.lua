@@ -1,7 +1,7 @@
 local Enum = require("util").Enum
 
 local pos = Enum{
-    "INTJ", "NUM", "UNKNOWN",
+    "N", "PRON", "INTJ", "DET", "PART", "NUM", "UNKNOWN",
     "COMMA",
     "TO_EN",
 }
