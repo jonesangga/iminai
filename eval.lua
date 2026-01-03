@@ -13,7 +13,7 @@ function to_en(sentences)
         if tag == ST.GREETING then
             local t = en[node.phrase.val]
             eval.print(t)
-        elseif tag == ST.UNKNOWN then
+        elseif tag == ST.X then
             for i, t in ipairs(node.t) do
                 local v = en[t.val]
                 if i > 1 then eval.write(' ') end
@@ -36,7 +36,7 @@ function eval_sentence(node, env)
     if tag == ST.GREETING then
         eval.print("helo")
 
-    elseif tag == ST.UNKNOWN then
+    elseif tag == ST.X then
         eval.print("unknown eval")
 
     else

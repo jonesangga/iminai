@@ -27,7 +27,7 @@ local function get_pos(tokens)
         elseif cmd[token] then
             table.insert(t, { val = token, type = cmd[token] })
         else
-            table.insert(t, { val = token, type = pos.UNKNOWN })
+            table.insert(t, { val = token, type = pos.X })
         end
     end
     return setmetatable(t, Pos)

@@ -1,13 +1,13 @@
 local Enum = require("util").Enum
 
 local pos = Enum{
-    "N", "PRON", "INTJ", "DET", "PART", "NUM", "UNKNOWN",
+    "N", "PRON", "INTJ", "DET", "PART", "NUM", "X",
     "COMMA",
     "TO_EN",
 }
 
 local SentenceTypes = Enum{
-    "UNKNOWN", "GREETING", "CMD",
+    "X", "GREETING", "CMD",
 }
 
 local punct = {

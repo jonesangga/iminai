@@ -90,7 +90,7 @@ function Parser:sentence()
             table.insert(t, self:peek())
             self:advance()
         end
-        return make(ST.UNKNOWN, { t = t })
+        return make(ST.X, { t = t })
     end
 end
 
