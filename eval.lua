@@ -30,20 +30,6 @@ function to_en(sentences)
     end
 end
 
-function eval_sentence(node, env)
-    local tag = node.tag
-
-    if tag == ST.GREETING then
-        eval.print("helo")
-
-    elseif tag == ST.X then
-        eval.print("unknown eval")
-
-    else
-        error("unhandled sentence type " .. ST[tag])
-    end
-end
-
 function eval_cmd(ast, env)
     local t = ast.cmd_type
 
@@ -60,7 +46,7 @@ function eval.eval(ast, env)
         eval_cmd(ast, env)
     else
         for _, node in ipairs(ast) do
-            eval_sentence(node, env)
+            node:eval(env)
         end
     end
 end

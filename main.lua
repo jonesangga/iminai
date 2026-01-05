@@ -1,8 +1,10 @@
 local inspect = require("libraries/inspect")
-local lexer = require("lexer")
-local pos = require("pos")
-local parser = require("parser")
-local eval = require("eval")
+local lexer   = require("lexer")
+local pos     = require("pos")
+local parser  = require("parser")
+local eval    = require("eval")
+local envir   = require("envir")
+local imi     = require("imi")
 
 local M = {}
 M.print = print
@@ -10,6 +12,8 @@ M.print = print
 function M.repl()
     M.print("Iminai. Ctrl+D to quit.")
 
+    local env = envir.new()
+    env:define("imi", imi)
     local tokens, poss, ast
 
     while true do
@@ -28,7 +32,7 @@ function M.repl()
             ast = parser(poss)
             -- ast:print()
 
-            eval.eval(ast)
+            eval.eval(ast, env)
         end
     end
 end

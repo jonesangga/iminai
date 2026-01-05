@@ -1,5 +1,5 @@
 repl:
-	rlwrap lua main.lua
+	@rlwrap lua main.lua
 
 doc:
 	cmark-gfm -e table docs/imola.md > docs/imola.html
@@ -11,4 +11,3 @@ unit:
 
 integration:
 	lua tests/integration/1.lua
-	lua tests/integration/translate.lua

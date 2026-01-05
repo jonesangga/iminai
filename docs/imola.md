@@ -52,6 +52,36 @@ Add 'no self' after personal pronoun.
 | yu ol no self | yourselves       |
 | hi ol no self | themselves       |
 
+## Verbs
+
+### Be
+
+There is only "iz".
+
+Ai iz studen.
+Yu iz priti.
+Hi iz smart.
+It iz nais.
+
+## Questions
+
+| Imola | Meaning   |
+| ----- | ----------|
+| wat   | what      |
+| hu    | who, whom |
+| wen   | when      |
+| wer   | where     |
+| wai   | why       |
+| hau   | how       |
+| wic   | which     |
+| hu no | whose     |
+
+### Wh-questions
+
+Formula: wh-word + subject + verb + "?"
+
+hu yu iz?
+
 ## Numbers
 
 | Imola | Meaning |

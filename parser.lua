@@ -1,6 +1,7 @@
 local inspect = require("libraries/inspect")
 local pos     = require("types").pos
 local ST      = require("types").SentenceTypes
+local S       = require("sentence")
 
 local function make(tag, props)
     props = props or {}
@@ -37,6 +38,7 @@ function Parser:advance()
     if not self:eof() then
         self.i = self.i + 1
     end
+    return self:prev()
 end
 
 function Parser:match(...)
@@ -49,6 +51,13 @@ function Parser:match(...)
     end
 
     return false
+end
+
+function Parser:consume(type, msg)
+    if self:check(type) then
+        return self:advance()
+    end
+    error(msg or "parser error")
 end
 
 function Parser:parse()
@@ -73,24 +82,34 @@ function Parser:parse()
 end
 
 function Parser:sentence()
-    if self:match(pos.INTJ) then
+    if self:match(pos.WH) then
+        local wh = self:prev()
+
+        local subject, copula
+        if self:check(pos.PRON) then
+            subject = self:advance()
+            copula = self:advance()
+        end
+        self:consume(pos.QMARK)
+
+        return S.InterCopular.new(wh, subject, copula)
+
+    elseif self:match(pos.INTJ) then
         local phrase = self:prev()
         local recipient
 
         if self:match(pos.COMMA) then
-            recipient = self:peek()
-            self:advance()
+            recipient = self:advance()
         end
 
-        return make(ST.GREETING, { phrase = phrase, recipient = recipient })
+        return S.Greeting.new(phrase, recipient)
 
     else
         local t = {}
         while not self:eof() do
-            table.insert(t, self:peek())
-            self:advance()
+            table.insert(t, self:advance())
         end
-        return make(ST.X, { t = t })
+        return S.Unknown.new(t)
     end
 end
 

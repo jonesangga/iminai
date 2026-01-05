@@ -10,10 +10,13 @@ local T = {
     ["faif"] = "five",
     ["fo"] = "four",
 
+    ["hau"] = "how",
     ["helo"] = "hello",
     ["hi"] = "he",
+    ["hu"] = "who",
 
     ["it"] = "it",
+    ["iz"] = "is",
 
     ["nain"] = "nine",
     ["no"] = "no_",
@@ -27,7 +30,12 @@ local T = {
     ["ten"] = "ten",
     ["thri"] = "three",
 
+    ["wai"] = "why",
     ["wan"] = "one",
+    ["wat"] = "what",
+    ["wen"] = "when",
+    ["wer"] = "where",
+    ["wic"] = "which",
 
     ["yu"] = "you",
 

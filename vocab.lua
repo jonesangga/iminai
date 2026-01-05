@@ -10,10 +10,13 @@ local vocab = {
     ["faif"] = pos.NUM,
     ["fo"] = pos.NUM,
 
+    ["hau"] = pos.WH,
     ["helo"] = pos.INTJ,
     ["hi"] = pos.PRON,
+    ["hu"] = pos.WH,
 
     ["it"] = pos.PRON,
+    ["iz"] = pos.V,
 
     ["nain"] = pos.NUM,
     ["no"] = pos.PART,
@@ -27,7 +30,12 @@ local vocab = {
     ["ten"] = pos.NUM,
     ["thri"] = pos.NUM,
 
+    ["wai"] = pos.WH,
     ["wan"] = pos.NUM,
+    ["wat"] = pos.WH,
+    ["wen"] = pos.WH,
+    ["wer"] = pos.WH,
+    ["wic"] = pos.WH,
 
     ["yu"] = pos.PRON,
 
