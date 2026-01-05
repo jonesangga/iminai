@@ -61,21 +61,10 @@ function Parser:consume(type, msg)
 end
 
 function Parser:parse()
-    local is_cmd, cmd_type
-
-    if self:match(pos.TO_EN) then
-        is_cmd = true
-        cmd_type = self:prev().type
-    end
-
     local sentences = {}
+
     while not self:eof() do
         table.insert(sentences, self:sentence())
-    end
-
-    if is_cmd then
-        sentences.tag = ST.CMD
-        sentences.cmd_type = cmd_type
     end
 
     return setmetatable(sentences, Parser)

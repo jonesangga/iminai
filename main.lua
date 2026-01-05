@@ -3,17 +3,19 @@ local lexer   = require("lexer")
 local pos     = require("pos")
 local parser  = require("parser")
 local eval    = require("eval")
-local envir   = require("envir")
+local context = require("context")
 local imi     = require("imi")
 
 local M = {}
 M.print = print
 
+local ctx = context.new()
+ctx:define("imi", imi)
+ctx.print = print
+
 function M.repl()
     M.print("Iminai. Ctrl+D to quit.")
 
-    local env = envir.new()
-    env:define("imi", imi)
     local tokens, poss, ast
 
     while true do
@@ -32,7 +34,7 @@ function M.repl()
             ast = parser(poss)
             -- ast:print()
 
-            eval.eval(ast, env)
+            eval.eval(ast, ctx)
         end
     end
 end
@@ -44,13 +46,13 @@ function M.run_string(line)
         tokens = lexer(line)
         poss = pos(tokens)
         ast = parser(poss)
-        eval.eval(ast)
+        eval.eval(ast, ctx)
     end
 end
 
 function M.setup(printfn, writefn)
-    eval.print = printfn
-    eval.write = writefn
+    ctx.print = printfn
+    ctx.write = writefn
     M.print = printfn
 end
 

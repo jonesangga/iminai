@@ -5,11 +5,16 @@ local inspect = require("libraries/inspect")
 local describe, it, expect = lust.describe, lust.it, lust.expect
 
 local text = ""
-local function append(s)
+
+local function _print(s)
+    text = text .. tostring(s) .. '\n'
+end
+
+local function _write(s)
     text = text .. tostring(s)
 end
 
-main.setup(append)
+main.setup(_print, _write)
 
 local function runner(src, output)
     text = ""
@@ -21,12 +26,22 @@ local tests = {
     {
         name = "greet",
         src = "helo",
-        out = "helo",
+        out = "helo\n",
     },
     {
         name = "greet Imi",
         src = "helo, Imi",
-        out = "helo",
+        out = "helo\n",
+    },
+    {
+        name = "hu question",
+        src = "hu yu iz?",
+        out = "ai iz Imi\n",
+    },
+    {
+        name = "hu question 2",
+        src = "hu ai iz?",
+        out = "ai nat nou\n",
     },
 }
 

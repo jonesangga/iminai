@@ -12,16 +12,16 @@ function InterCopular.new(wh, subject, copula)
     }, InterCopular)
 end
 
-function InterCopular:eval(env)
+function InterCopular:eval(ctx)
     if self.wh.val == "hu" then
         if self.subject.val == "yu" then
             if self.copula.val == "iz" then
-                local name = env:get("imi"):get_name()
-                print("ai iz " .. name)
+                local name = ctx:get("imi"):get_name()
+                ctx.print("ai iz " .. name)
             end
 
         else
-            print("ai nat nou")
+            ctx.print("ai nat nou")
         end
 
     else
@@ -40,8 +40,8 @@ function Greeting.new(phrase, recipient)
     }, Greeting)
 end
 
-function Greeting:eval(env)
-    print("helo")
+function Greeting:eval(ctx)
+    ctx.print("helo")
 end
 
 local Unknown = {}
@@ -54,8 +54,8 @@ function Unknown.new(t)
     }, Unknown)
 end
 
-function Unknown:eval(env)
-    print("unknown")
+function Unknown:eval(ctx)
+    ctx.print("unknown")
 end
 
 return {
