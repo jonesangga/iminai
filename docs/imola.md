@@ -58,7 +58,7 @@ Add 'no self' after personal pronoun.
 
 There is only "iz".
 
-Ai iz studen.
+Ai iz Alex.
 Yu iz priti.
 Hi iz smart.
 It iz nais.
@@ -80,7 +80,7 @@ It iz nais.
 
 Formula: wh-word + subject + verb + "?"
 
-hu yu iz?
+Hu yu iz?
 
 ## Numbers
 

@@ -1,5 +1,30 @@
 local inspect = require("libraries/inspect")
 
+local Copular = {}
+Copular.__index = Copular
+
+function Copular.new(subject, copula, pred)
+    return setmetatable({
+        type    = "COPULAR",
+        subject = subject,
+        copula  = copula,
+        pred    = pred,
+    }, Copular)
+end
+
+function Copular:eval(ctx)
+    if self.subject.val == "ai" then
+        if self.copula.val == "iz" then
+            local user = ctx:get("user")
+            user.name = self.pred.val
+            ctx.print("helo, " .. user.name)
+        end
+
+    else
+        ctx.print("ai nat nou")
+    end
+end
+
 local InterCopular = {}
 InterCopular.__index = InterCopular
 
@@ -8,7 +33,7 @@ function InterCopular.new(wh, subject, copula)
         type    = "INTER_COPULAR",
         wh      = wh,
         subject = subject,
-        copula  = copula
+        copula  = copula,
     }, InterCopular)
 end
 
@@ -18,6 +43,16 @@ function InterCopular:eval(ctx)
             if self.copula.val == "iz" then
                 local name = ctx:get("imi"):get_name()
                 ctx.print("ai iz " .. name)
+            end
+
+        elseif self.subject.val == "ai" then
+            if self.copula.val == "iz" then
+                local user = ctx:get("user")
+                if user and user.name then
+                    ctx.print("yu iz " .. user.name)
+                else
+                    ctx.print("ai nat nou yu")
+                end
             end
 
         else
@@ -59,6 +94,7 @@ function Unknown:eval(ctx)
 end
 
 return {
+    Copular = Copular,
     InterCopular = InterCopular,
     Greeting = Greeting,
     Unknown = Unknown,

@@ -71,7 +71,20 @@ function Parser:parse()
 end
 
 function Parser:sentence()
-    if self:match(pos.WH) then
+    if self:check(pos.PRON) then
+        local subject = self:advance()
+        -- print("got pron " .. subject.val)
+        local copula = self:consume(pos.V)
+        -- print("got copula " .. copula.val)
+
+        local pred
+        if self:check(pos.X) then
+            pred = self:advance()
+        end
+        -- print("got pred " .. pred.val)
+        return S.Copular.new(subject, copula, pred)
+
+    elseif self:match(pos.WH) then
         local wh = self:prev()
 
         local subject, copula

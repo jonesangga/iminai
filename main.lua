@@ -11,6 +11,7 @@ M.print = print
 
 local ctx = context.new()
 ctx:define("imi", imi)
+ctx:define("user", {})
 ctx.print = print
 
 function M.repl()

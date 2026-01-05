@@ -2,7 +2,10 @@ local Ctx = {}
 Ctx.__index = Ctx
 
 function Ctx.new(names, parent)
-    return setmetatable({ names = names or {}, parent = parent }, Ctx)
+    return setmetatable({
+        names  = names or {},
+        parent = parent,
+    }, Ctx)
 end
 
 --- This might be useful later. For example when Imi is asked for thought experiment.
