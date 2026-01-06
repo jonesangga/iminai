@@ -22,6 +22,7 @@ local T = {
     ["no"] = "no_",
 
     ["ol"] = "all",
+    ["oult"] = "old",
 
     ["sefen"] = "seven",
     ["self"] = "self",

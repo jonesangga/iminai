@@ -43,6 +43,16 @@ local tests = {
         src = "hu ai iz?",
         out = "ai nat nou\n",
     },
+    {
+        name = "hau question",
+        src = "hau oult yu iz?",
+        out = "ai iz 13\n",
+    },
+    {
+        name = "copular clause",
+        src = "ai iz Alex",
+        out = "helo, Alex\n",
+    },
 }
 
 describe("TEST 1", function()

@@ -84,17 +84,8 @@ function Parser:sentence()
         -- print("got pred " .. pred.val)
         return S.Copular.new(subject, copula, pred)
 
-    elseif self:match(pos.WH) then
-        local wh = self:prev()
-
-        local subject, copula
-        if self:check(pos.PRON) then
-            subject = self:advance()
-            copula = self:advance()
-        end
-        self:consume(pos.QMARK)
-
-        return S.InterCopular.new(wh, subject, copula)
+    elseif self:check(pos.WH) then
+        return self:wh_question()
 
     elseif self:match(pos.INTJ) then
         local phrase = self:prev()
@@ -114,6 +105,43 @@ function Parser:sentence()
         return S.Unknown.new(t)
     end
 end
+
+function Parser:wh_question()
+    local wh = self:wh_phrase()
+    local np = self:np()
+    local vp = self:vp()
+    self:consume(pos.QMARK)
+    return S.InterCopular.new(wh, np, vp)
+end
+
+function Parser:wh_phrase()
+    local wh = self:advance()
+    if wh.val == "hau" then
+        if self:check(pos.ADJ) then
+            local adj = self:advance()
+            return S.Wh.new(wh, adj)
+        end
+    else
+        return S.Wh.new(wh)
+    end
+end
+
+function Parser:np()
+    local np
+    if self:check(pos.PRON) then
+        np = self:advance()
+    end
+    return np
+end
+
+function Parser:vp()
+    local vp
+    if self:check(pos.V) then
+        vp = self:advance()
+    end
+    return vp
+end
+
 
 local function parser(pos)
     local p = Parser.new(pos)

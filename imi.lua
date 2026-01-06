@@ -1,5 +1,6 @@
 local Imi = {}
 Imi.name = "Imi"
+Imi.age = 13
 
 -- This might seem redundant. This is useful later for random responses.
 function Imi:get_name()

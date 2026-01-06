@@ -8,6 +8,7 @@ test: unit integration
 
 unit:
 	lua tests/unit/lexer_test.lua
+	lua tests/unit/translate.lua
 
 integration:
 	lua tests/integration/1.lua

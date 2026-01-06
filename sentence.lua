@@ -38,29 +38,21 @@ function InterCopular.new(wh, subject, copula)
 end
 
 function InterCopular:eval(ctx)
-    if self.wh.val == "hu" then
-        if self.subject.val == "yu" then
-            if self.copula.val == "iz" then
-                local name = ctx:get("imi"):get_name()
-                ctx.print("ai iz " .. name)
-            end
+    self.wh:eval(ctx)
 
-        elseif self.subject.val == "ai" then
-            if self.copula.val == "iz" then
-                local user = ctx:get("user")
-                if user and user.name then
-                    ctx.print("yu iz " .. user.name)
-                else
-                    ctx.print("ai nat nou yu")
-                end
-            end
+    if self.subject.val == "ai" then
+        ctx.subject = "user"
+    elseif self.subject.val == "yu" then
+        ctx.subject = "imi"
+    end
 
-        else
-            ctx.print("ai nat nou")
-        end
-
+    if self.copula.val == "iz" then
+    end
+    local prop = ctx:get(ctx.subject)[ctx.adj]
+    if prop then
+        ctx.print("ai iz " .. prop)
     else
-        error("unknown wh-word")
+        ctx.print("ai nat nou")
     end
 end
 
@@ -77,6 +69,28 @@ end
 
 function Greeting:eval(ctx)
     ctx.print("helo")
+end
+
+local Wh = {}
+Wh.__index = Wh
+
+function Wh.new(wh, adj)
+    return setmetatable({
+        type = "WH",
+        wh   = wh,
+        adj  = adj,
+    }, Wh)
+end
+
+function Wh:eval(ctx)
+    if self.wh.val == "hu" then
+        ctx.wh = "hu"
+        ctx.adj = "name"
+    elseif self.wh.val == "hau" then
+        if self.adj.val == "oult" then
+            ctx.adj = "age"
+        end
+    end
 end
 
 local Unknown = {}
@@ -97,5 +111,6 @@ return {
     Copular = Copular,
     InterCopular = InterCopular,
     Greeting = Greeting,
+    Wh = Wh,
     Unknown = Unknown,
 }

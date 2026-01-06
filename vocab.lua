@@ -22,6 +22,7 @@ local vocab = {
     ["no"] = pos.PART,
 
     ["ol"] = pos.DET,
+    ["oult"] = pos.ADJ,
 
     ["sefen"] = pos.NUM,
     ["self"] = pos.N,
